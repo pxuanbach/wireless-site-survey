@@ -21,7 +21,7 @@
 \maketitle
 
 \begin{abstract}
-This report investigates Wi-Fi coverage and signal strength at a specific area in Gigamall Shopping Center, Thu Duc, and explains the basic architecture of the network's roaming currently in use.
+This report investigates Wi-Fi coverage and signal strength at a specific area in the Gigamall Commercial Center and explains the architecture of the network's roaming currently in use.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -29,22 +29,19 @@ wireless site survey, roaming architecture, coverage analysis
 \end{IEEEkeywords}
 
 \section{Introduction}
-Wireless site surveys are useful for ensuring good performance and coverage of Wi-Fi networks in equipped environments, especially in locations like shopping centers, as they require a stable Wi-Fi connection for a large number of users. Surveys should be conducted in small areas for more accuracy. This report aims to present findings and assess Wi-Fi signal strength, and coverage areas on the first floor of Gigamall Shopping Center, Thu Duc. These findings and assessments will serve as a basis for recommendations to enhance the network. Additionally, the report will explain the roaming architecture implemented to optimise connectivity across different areas within the network and improve overall user experience.
+Wireless site surveys are essential for ensuring optimal performance and coverage of Wi-Fi networks in equipped environments, particularly in locations like Gigamall Commercial Center, where a stable Wi-Fi connection is required for a large number of users. To achieve greater accuracy, surveys should be conducted in smaller areas. This report aims to present findings and assess Wi-Fi signal strength and coverage across a floor of the Gigamall Commercial Center. These findings will serve as a foundation for recommendations to enhance the network. Furthermore, the report will explain the roaming architecture implemented to optimize connectivity across different areas within the network, improving the overall user experience.
+
 \section{Wireless Site Surveys}
 
 \subsection{Site Description}
-This area is the Gigamall Shopping Center in Thu Duc, frequently visited by local residents due to its many shopping and entertainment zones, as well as large supermarket systems. The surveyed floor is the first floor, covering an area of approximately 12,000 square meters. The layout consists of shops, stairs, and corridors. The walls are made of plastic partitions with a steel frame, and the doors are made of glass.
+This area is the Gigamall Commercial Center in Thu Duc, frequently visited by local residents due to its many shopping and entertainment zones, as well as large supermarket systems. The surveyed floor is the first floor, covering an area of approximately 12,000 square meters. The layout consists of shops, stairs, and corridors. The walls are made of plastic partitions with a steel frame, and the doors are made of glass.
 
 The survey was conducted on the weekend during peak hours. The highest density was recorded at Highland Coffee, where a large number of people gathered to relax.
 
 \subsection{Methodology}
-To ensure a thorough assessment of network conditions, a strategic selection of survey points was made. These points were carefully chosen to provide representative coverage across the entire mall, encompassing various areas such as common spaces, retail outlets, and food courts. A floor map was generated using data from the official Gigamall website. Network access points were identified and marked on the map. The next steps involved identifying the points to be surveyed; these selected points had to be specific locations to ensure that the survey covered nearly all aspects of the floor. To facilitate data collection, specialized network measurement tools were configured on mobile and laptop devices. 
+To begin, a floor map was created based on data from the official Gigamall website. Access points were also marked on the floor map. The next steps involved identifying the points to be surveyed; these selected points had to be specific locations to ensure that the survey covered nearly all aspects of the floor. Network measuring tools needed to be installed on the devices used for the survey. In this study, \textit{speedtest-cli} was used to measure internet speed, including upload and download rates as well as latency. Due to the large number of points to be surveyed, a Python script was utilized to automate the process and save the records into a text file whenever one of these points was reached. Additionally, \textit{lswifi} was employed to list all Wi-Fi networks that the device could detect, providing data on SSID, RSSI, channel, frequency, security, and the 802.11 standard.
 
-Specifically, \textit{speedtest-cli} utility is used to quantify internet performance metrics, including upload and download speeds as well as network latency. Due to the large number of points to be surveyed, a Python script was utilized to automate the process and save the records into a text file whenever one of these points was reached. Moreover, \textit{lswifi} commandline tool was employed to list all the recognizable Wi-Fi networks within range, capturing essential details such as Service Set Identifiers (SSIDs), Received Signal Strength Indicators (RSSIs), channels, frequencies, security protocols, and 802.11 standards.
-
-Given the substantial number of survey points, a Python script was developed to automate the data collection process. This script enabled the efficient recording of network measurements at each designated location, storing the results in a csv file for subsequent analysis.
-
-Once preparations were complete, the next step was to walk through the marked locations and capture the necessary information. It was important to note the points where the device could switch from one access point to another. The collected data will be visualized using Microsoft Excel and Chart.js to generate graphical representations. The resulting visualizations will be presented in the subsequent section.
+After thoroughly preparing for the survey, the next step was to walk through the marked locations and capture the necessary information. It was important to note the points where the device could switch from one access point to another. The collected data would then be processed and visualized using a Wi-Fi HeatMap.
 
 \subsection{Findings and Analysis}
 
