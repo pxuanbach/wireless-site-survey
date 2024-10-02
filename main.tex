@@ -48,57 +48,59 @@ Once preparations were complete, the next step was to walk through the marked lo
 
 \subsection{Findings and Analysis}
 
-Fig. 1 below is the heatmap indicating Wi-Fi strength received by the device across the floor, with four access points located at positions as shown on the map. The strength is represented using a colour gradient from red (the strongest signal) to orange, yellow and finally blue (the weakest signal).
+Fig. 1 below is the heatmap illustrating the Wi-Fi signal strength received by the device across the floor, with four access points located at positions as shown on the map. Signal strength is visually represented by a color gradient, ranging from red (strongest signal) to orange, yellow, and blue (weakest signal).
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.48\textwidth]{heatmap.png}
-    \caption{Heatmap of Wi-Fi signal coverage on the first floor of Gigamall.}
+    \includegraphics[width=0.48\textwidth]{fig1_heatmap.png}
+    \caption{Heatmap of Wi-Fi signal coverage on the first floor of Gigamall Shopping Center.}
 \end{figure}
 
-The spacious area on the left side is the UIT library, which is equipped with two access points to meet the high demands of students for studying, researching, and entertaining during break times. As can be observed from the map, the signal at the library is consistently above -70 dBm, which was quite adequate at the time when the survey was conducted. However, it would be better to have an improvement that makes the signal strength stronger to ensure reliable and faster connections for users, especially during peak usage periods.
+The spacious central area on the map is a common space within the shopping mall, equipped with approximately 3 public Wi-Fi access points to meet the high demand of visitors for browsing, online shopping, and entertainment. As can be seen from the map, the signal in this area is always measured above -60 dBm, which was only sufficient at the time the survey was conducted. Within a 10-meter radius of each access point, a level below -60 dBm can be achieved. However, the stability is not high due to the large number of connections accessing simultaneously. Improving the signal strength would be beneficial to ensure more reliable and faster connections, especially during peak usage periods.
 
-The larger area on the right side of the map includes school principal’s offices, administrative offices, staff rooms, and long corridors. Even though this location requires a stable connection for office operations, there are only two access points placed in two corridors. That leads to the situation where the signal is strong enough to cover the two corridors, but the received signal is very low in rooms. Furthermore, the Wi-Fi signal is obstructed by the walls and doors as well, contributing to the RSSI readings in rooms mostly being below -70 dBm. To delve deeper, the relationship between distance and RSSI is depicted in Fig. 2. Overall, signal strength gradually fades as distance from access point increases. It also depends on other factors like walls and doors causing reflection or absorption, so the values vary throughout the chart.
+The surrounding areas are shop houses separated from the common space by walls, glass, and large plastic panels. Despite being within the shopping center, these shop houses suffer from poor Wi-Fi signal strength. Consequently, most shop houses have deployed their own Wi-Fi networks, leading to a dense Wi-Fi environment. This high density of Wi-Fi networks can result in interference, particularly when multiple networks operate on the same channel or frequency band (2.4GHz or 5GHz). As illustrated in Fig 2, signal strength typically decreases with distance from the access point, but factors such as physical obstructions, high density of Wi-Fi networks and a large number of concurrent connections can cause deviations from this general trend, resulting in non-monotonic chart values.
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.48\textwidth]{rssi.png}
+    \includegraphics[width=0.48\textwidth]{fig2_rssi.png}
     \caption{A line chart shows the relationship between distance from access
 point and RSSI.}
 \end{figure}
 
-Fig. 3 illustrates the differences in signal strength under each condition. Signal strength levels were collected for a duration of 120 seconds while connected to the same access point at the same distance. The conditions differed: one was line of sight (LoS), where there were no obstacles between the access point and the device, and the other was non-line of sight (Non-LoS), where the signal was obstructed. As can be seen, signal strength in line of sight is consistently stronger and experiences less attenuation than in non-line of sight.
-\vspace{120}
+Fig. 3 compares the signal strength under line-of-sight (LoS) and non-line of sight (Non-LoS) conditions. Signal strength measurements were collected over a 120-second interval while connected to the same access point at a fixed distance. As shown, the LoS condition consistently exhibits stronger signal strength and less attenuation compared to the Non-LoS condition.
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.48\textwidth]{los_nonlos.png}
+    \includegraphics[width=0.48\textwidth]{fig3_los_nonlos.png}
     \caption{A graph illustrates signal strength in LoS and Non-LoS conditions.}
     \label{fig:los_nonlos}
 \end{figure}
 
-Besides, data on upload and download speeds as well as latency at each surveyed spot are illustrated in Fig. 4. The red line represents latency in milliseconds (ms) on the left axis while the green bar and the blue bar show upload and download speeds in Megabits per second (Mbps) respectively.
-
+Additionally, data on upload and download speeds, as well as latency at each surveyed spot, are illustrated in Fig. 4. The green line represents latency in milliseconds (ms) on the right axis, while the red and blue bars represent upload and download speeds in Megabits per second (Mbps) respectively.
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.5\textwidth]{speech_test.png}
+    \includegraphics[width=0.5\textwidth]{fig4_speed_test.png}
     \caption{Relationship between distance from access point and RSSI.}
 \end{figure}
 
-Generally, latency increases as the signal strength decreases, reaching a peak at approximately 22 ms. High latency potentially affects real-time applications like online lectures or video streaming. Moreover, it has witnessed a fluctuation in upload and download speeds due to various obstacles causing interference. The stronger the signal strength, the higher the upload and download speeds.
+The green line, representing latency, demonstrates an inverse correlation with RSSI. As signal strength (RSSI) diminishes, latency increases, and conversely. For instance, at low RSSI values (approximately -73 dBm), latency is elevated (above 70 ms), indicating a direct relationship between weak signal strength and increased data transmission delays. High latency potentially affects real-time applications like online gaming or video streaming.
 
-The survey also identified two roaming areas where the access points overlapped and the device transitioned between access points without any signal interruption. Fig. 5 displays the changes in the access point BSSID, which is the MAC address of the access point, as the device moves into the roaming areas. Nonetheless, it discovered a dead zone where the Wi-Fi connection was disconnected before connecting to a new access point, indicating that the roaming transition in this area was not as smooth as expected. The reason for that situation is that the distance between the two access points is quite large, and signal strength is insufficient so the area cannot be fully covered. The roaming architecture will be discussed in more detail in chapter 3.
+As signal strength improves (higher RSSI values), both upload and download speeds increase. The peak upload and download speeds are achieved at RSSI values between -56 dBm and -54 dBm, with download speeds exceeding 25 Mbps and upload speeds reaching approximately 20 Mbps. Conversely, at weaker signal levels (e.g., -73 dBm), speeds are significantly reduced, approaching negligible levels. 
+
+A clear correlation exists between stronger Wi-Fi signals (higher RSSI) and improved network performance, encompassing faster upload/download speeds and lower latency. The chart indicates that elevating signal strength, particularly above -60 dBm, can substantially enhance both speed and user experience by reducing latency. However, there are instances where the data deviates from the expected theoretical relationship due to the inherent instability of Wi-Fi signals as described in Fig. 2. A case in point is the anomalous spike in both download and upload speeds observed at an RSSI of -65 dBm.
+
+The survey also identified two roaming areas where the access points overlapped and the device transitioned between access points without any signal interruption. Fig. 5 displays the changes in the access point BSSID, which is the MAC address of the access point, as the device moves into the roaming areas. Nonetheless, it discovered a dead zone where the Wi-Fi connection was disconnected before connecting to a new access point, indicating that the roaming transition in this area was not as smooth as expected. The reason for that situation is that the distance between the two access points is quite large, and signal strength is insufficient so the area cannot be fully covered. The roaming architecture will be discussed in more detail in section III.
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.4\textwidth]{rssid_change.png}
+    \includegraphics[width=0.44\textwidth]{fig5_rssid_change.png}
     \caption{An output demonstrates BSSID changes at each roaming spot.}
 \end{figure}
 
 \subsection{Recommendations for the network}
 
-Based on the findings from the site survey, there are some suggestions to enhance the current network. First and foremost, placement of access points should be optimised and more access points should be installed in locations prone to interference. This study recommends installing four additional access points in the four rooms located at the centre of the floor to minimise dead zones in the rooms, assisting in increasing signal coverage to have a seamless roaming transition in these areas. These additional access points also help distribute the network load, reducing congestion on other access points. The proposed access point placement is shown in Fig. 6
+Based on the findings from the site survey, there are some suggestions to enhance the current network. First and foremost, placement of access points should be optimised and more access points should be installed in locations prone to interference. This study recommends installing four additional access points in the four rooms located at the centre of the floor to minimise dead zones in the rooms, assisting in increasing signal coverage to have a seamless roaming transition in these areas. These additional access points also help distribute the network load, reducing congestion on other access points. The proposed access point placement is shown in Fig. 6.
 
 \begin{figure}[htbp]
     \centering
