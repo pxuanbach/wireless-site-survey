@@ -100,22 +100,23 @@ The survey also identified two roaming areas where the access points overlapped 
 
 \subsection{Recommendations for the network}
 
-Based on the findings from the site survey, there are some suggestions to enhance the current network. First and foremost, placement of access points should be optimised and more access points should be installed in locations prone to interference. This study recommends installing four additional access points in the four rooms located at the centre of the floor to minimise dead zones in the rooms, assisting in increasing signal coverage to have a seamless roaming transition in these areas. These additional access points also help distribute the network load, reducing congestion on other access points. The proposed access point placement is shown in Fig. 6.
+The site survey results suggest that optimizing the network system requires several improvements. Specifically, the placement of access points should be optimized, and more access points should be deployed in areas prone to interference. To address the low-signal areas on the first floor of the shopping mall, this study proposes installing three additional access points to mitigate dead zones in these areas and improve signal coverage for seamless roaming. This will also help distribute the network load, alleviating congestion. The recommended locations for the new access points are illustrated in Fig. 6.
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.4\textwidth]{acesspoint.png}
+    \includegraphics[width=0.48\textwidth]{fig6_acesspoint_suggestion.png}
     \caption{A proposed access point placement.}
 \end{figure}
 
-Additionally, access points should be placed at higher elevations to improve signal distribution. When positioned higher, signals are less likely to be absorbed by people and objects, which can contribute to signal loss. Furthermore, a mesh Wi-Fi system that uses multiple nodes can be considered to be implemented to create a network with enhanced coverage, but its downside is that the speed is potentially reduced as the bandwidth is split. And importantly, more site surveys should be carried out regularly to evaluate progress as well as investigate if any spots require further improvements.
+Furthermore, access points should be placed at higher elevations to improve signal distribution. By placing them at higher positions, signals are less likely to be obstructed. Additionally, mesh Wi-Fi networks that uses multiple nodes, could be explored to achieve full building coverage. However, it's important to note that this approach may lead to reduced speeds due to bandwidth division. These conclusions are drawn from the current survey and may require reassessment as the network evolves. Regular site surveys are recommended to monitor network performance and identify areas for optimization.
 
 \section{Roaming Architecture}
 
 This section will explain the meaning of roaming in wireless local area networks (WLANs), and introduce the basics of two types of roaming. It also describes the roaming model in the site survey.
 
 \subsection{Definition of Roaming}
-While joining a WLAN with multiple access points installed, the process by which a client device, also known as a wireless device, switches its connection from one access point to another access point as moving around the area is referred to as roaming \cite{article_example}.
+
+With one network, several access points must often be installed to cover a building adequately. [...] When a user moves between one cell - a floor of a building, let's say - and another, the system must provide for hand-off, so that users can roam the floors without dropping the connection. The access point must automatically start handling the user's data traffic and redirect messages sent to the old access point. Almost all wireless LAN products have software that enables users to roam between access points, once the software notices a diminishing signal, it searches the domain for the strongest ac- cess-point signal and connects to that \cite{localnetworksgowireless}.
 
 Roaming in WLAN is categorised into two types: internal roaming and external roaming [2] [3]. The study only focuses on internal roaming since it is implemented in the area where the site survey was conducted.
 
@@ -144,11 +145,6 @@ The process of internal roaming includes many steps other than just finding a ne
 
 To give an example of internal roaming, the UIT network in the site survey above uses internal roaming, as the SSIDs of the access points are similar—UIT Public, the IP address of the device was not changed when moving to another access point. As mentioned earlier, there are locations where the roaming process was seamless and others where connections were interrupted during roaming. Fig. 8 demonstrates how seamless roaming works in the site survey.
 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.4\textwidth]{survey.png}
-    \caption{An illustration of how seamless roaming works in the site survey.}
-\end{figure}
 
 
 \subsection{External Roaming}
