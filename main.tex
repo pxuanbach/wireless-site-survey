@@ -2,7 +2,8 @@
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{cite}
-\usepackage{float}  
+\usepackage{float} 
+\usepackage{url} 
 
 \title{A Technical Report on Wireless Site Survey and Architecture of Roaming for Wireless Access Networks in Commercial Areas.}
 
@@ -118,35 +119,52 @@ This section will explain the meaning of roaming in wireless local area networks
 
 With one network, several access points must often be installed to cover a building adequately. [...] When a user moves between one cell - a floor of a building, let's say - and another, the system must provide for hand-off, so that users can roam the floors without dropping the connection. The access point must automatically start handling the user's data traffic and redirect messages sent to the old access point. Almost all wireless LAN products have software that enables users to roam between access points, once the software notices a diminishing signal, it searches the domain for the strongest access-point signal and connects to that \cite{wickelgren1996}.
 
-Roaming in WLAN is categorised into two types: internal roaming and external roaming \cite{wiki_roaming}. The study only focuses on internal roaming since it is implemented in the area where the site survey was conducted.
+Roaming in WLAN is categorised into two types: internal roaming (layer 2) and external roaming (layer 3) \cite{wiki_roaming}. The study only focuses on internal roaming since it is implemented in the area where the site survey was conducted.
 
 \subsection{Internal Roaming}
 
-Internal roaming or Layer 2 roaming refers to the process of connection is shifted between access points in the same network \cite{article_example}. Generally, the client device is not required to re-authenticate in internal roaming. The internal roaming process is shown in Fig. 7.
+Internal roaming or Layer 2 roaming  refers to roaming that occurs within the same subnet or distribution system. In this case, the device’s IP address remains unchanged, and the transition between APs is nearly seamless. Generally, the client device is not required to re-authenticate in internal roaming. The internal roaming process is shown in Fig. 7 and Fig. 8.
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.4\textwidth]{internal_roaming.png}
-    \caption{A picture displays the internal roaming (Layer 2 roaming) process
-[4].}
+    \includegraphics[width=0.46\textwidth]{fig7_internal_roaming.png}
+    \caption{A picture displays the concept of wireless local area network (WLAN) roaming \cite{study_ccnp}.}
 \end{figure}
 
-The client device, after participating in the network, will continuously listen for beacon frames or send probe requests to detect which access point has the strongest signal strength within its range and then decide to roam; the mechanism used to find access points is vendor-specific \cite{article_example}. Roaming can happen either when the signal strength of the current access point decreases or when detecting a higher signal strength level at another access point. The client device does not necessarily need to move into a designated or specific roaming spot; as long as it is within the overlapping range of access points, it can roam. In ideal cases, the roaming transition is seamless and no interruption of the data transmission between the client device and an application connected to the network occurs. However, there are also some situations where the client device disconnects from the current access point before re-associating with the new access point \cite{article_example} \cite{book_example}.
+Figure 7 illustrates two WLAN controllers (WLCs), where WLC-1 contains a database entry for Client-1. The client moves to AP-2, roaming from one WLC to another. This handover, managed by both WLCs, involves the client’s IP address. Prior to the roam, the client is connected to AP-1, receiving an IP address based on the subnet and VLAN settings configured on WLC-1’s WLAN. Since the WLAN Staff is assigned to VLAN 10, the client uses an IP address from the 192.168.100.0/24 subnet range.
 
-The process of internal roaming includes many steps other than just finding a new access point having a high RSSI to associate with. Roshan and Leary \cite{article_example} explain that there are some tasks for internal roaming as listed below and tasks with a mark (*) are not specified in the 802.11 standard so they are optional tasks.
+When the client connects to a new Access Point, it tries to retain its current IP address or requests a new one from the DHCP server. Fig. 8 shows the client moving to AP-2, where the WLAN Staff still operates on VLAN 10 with the same 192.168.100.0/24 subnet, the same as WLC-2.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.46\textwidth]{fig8_internal_roaming_after_roaming.png}
+    \caption{A WLAN roaming scenario showcasing the handover process between two WLCs \cite{study_ccnp}.}
+\end{figure}
+
+Although the client switched between different APs, it remained within the same subnet and VLAN, which qualifies as a Layer 2 intercontroller roam. This type of local-to-local roaming allows the client to keep its IP address, and the process is quick, typically taking less than 20 ms.
+
+The example above illustrates the Layer 2 roaming process of a client. Delving deeper into the technical aspects, there are more procedures involved than simply finding a new AP to communicate with \cite{wlan_fundamentals}. 
+
+(*) These tasks are not mandatory, as they are not explicitly defined in the 802.11 standard.
 
 \begin{itemize}
-    \item The current access point must determine that the client has roamed away from it to the new access point.
-    \item The current access point should temporarily store data any data meant for the roaming client. (*)
-    \item The new access point must inform the current access point that the client has successfully roamed, typically through a unicast or multicast packet sent from the current access point to the new access point, using the client's MAC address as the source. (*)
-    \item The current access point should forward the buffered data to the new access point. (*)
-    \item The access points need to update the MAC address tables on the infrastructure switches to prevent data loss for the roaming client. (*)
+    \item Client associates with the initial AP.
+    \item Client roams to a new AP.
+    \item Previous AP buffers data destined for the roaming client. (*) 
+    \item New AP indicates to the previous AP that the client has successfully roamed. This is typically done via a unicast or multicast packet from the old AP to the new AP with the source MAC address set to the MAC of the roaming client. (*)
+    \item After receiving confirmation, the previous AP should forward the buffered data to the new AP.
+    \item It is crucial for the previous AP to recognize that the client has moved away from its coverage area. Previous AP updates its MAC address table to remove the roaming client.
+    \item New AP needs to update MAC address tables on the infrastructure switches to add the roaming client.
 \end{itemize}
 
+To give an example of internal roaming, the GigaMall network in the site survey above employs internal roaming, as the SSID of the access points is the same—\#GigaMall - Swifi Free. The device's IP address remained unchanged when transitioning to another access point. As mentioned earlier, there were areas where the roaming process was seamless and others where connections were interrupted during the roaming process. Fig. 9 demonstrates how seamless roaming works in the site survey.
 
-To give an example of internal roaming, the UIT network in the site survey above uses internal roaming, as the SSIDs of the access points are similar—UIT Public, the IP address of the device was not changed when moving to another access point. As mentioned earlier, there are locations where the roaming process was seamless and others where connections were interrupted during roaming. Fig. 8 demonstrates how seamless roaming works in the site survey.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.48\textwidth]{fig9_seamless_roaming_work.png}
+    \caption{An illustration of how seamless roaming works in the site survey.}
 
-
+\end{figure}
 
 \subsection{External Roaming}
 
@@ -164,7 +182,21 @@ This study has explored weak points of wireless network in the area through a si
 
 Additionally, the definition and classification of roaming introduced in the report provide insight into how to maintain seamless connectivity across different access points, improving overall network performance and user experience in the academic environment.
 
-\bibliographystyle{IEEEtran}
-\bibliography{references}
+
+\begin{thebibliography}{9}
+
+\bibitem{wickelgren1996}
+I. J. Wickelgren, "Local-area networks go wireless," \textit{IEEE Spectrum}, vol. 33, pp. 38--40, 1996.
+
+\bibitem{wiki_roaming}
+Wikipedia contributors, "Wireless LAN - Wikipedia," 2024. [Online]. Available: \url{https://en.wikipedia.org/wiki/Wireless_LAN#Roaming}. [Accessed: 5-Oct-2024].
+
+\bibitem{study_ccnp}
+Study CCNP, ``WLAN Intercontroller Layer 2 and Layer 3 Roaming,'' 2024. [Online]. Available: \url{https://study-ccnp.com/wlan-intercontroller-layer-2-layer-3-roaming}. [Accessed: 5-Oct-2024].
+
+\bibitem{wlan_fundamentals}
+P. Roshan and J. Leary, \textit{802.11 Wireless LAN Fundamentals}. Cisco Press, 2003.
+
+\end{thebibliography}
 
 \end{document}
