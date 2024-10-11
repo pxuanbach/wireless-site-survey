@@ -2,7 +2,8 @@
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{cite}
-\usepackage{float}  
+\usepackage{float} 
+\usepackage{url} 
 
 \title{A Technical Report on Wireless Site Survey and Architecture of Roaming for Wireless Access Networks in Commercial Areas.}
 
@@ -100,74 +101,111 @@ The survey also identified two roaming areas where the access points overlapped 
 
 \subsection{Recommendations for the network}
 
-Based on the findings from the site survey, there are some suggestions to enhance the current network. First and foremost, placement of access points should be optimised and more access points should be installed in locations prone to interference. This study recommends installing four additional access points in the four rooms located at the centre of the floor to minimise dead zones in the rooms, assisting in increasing signal coverage to have a seamless roaming transition in these areas. These additional access points also help distribute the network load, reducing congestion on other access points. The proposed access point placement is shown in Fig. 6.
+The site survey results suggest that optimizing the network system requires several improvements. Specifically, the placement of access points should be optimized, and more access points should be deployed in areas prone to interference. To address the low-signal areas on the first floor of the shopping mall, this study proposes installing three additional access points to mitigate dead zones in these areas and improve signal coverage for seamless roaming. This will also help distribute the network load, alleviating congestion. The recommended locations for the new access points are illustrated in Fig. 6.
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.4\textwidth]{acesspoint.png}
+    \includegraphics[width=0.48\textwidth]{fig6_acesspoint_suggestion.png}
     \caption{A proposed access point placement.}
 \end{figure}
 
-Additionally, access points should be placed at higher elevations to improve signal distribution. When positioned higher, signals are less likely to be absorbed by people and objects, which can contribute to signal loss. Furthermore, a mesh Wi-Fi system that uses multiple nodes can be considered to be implemented to create a network with enhanced coverage, but its downside is that the speed is potentially reduced as the bandwidth is split. And importantly, more site surveys should be carried out regularly to evaluate progress as well as investigate if any spots require further improvements.
+Furthermore, access points should be placed at higher elevations to improve signal distribution. By placing them at higher positions, signals are less likely to be obstructed. Additionally, mesh Wi-Fi networks that uses multiple nodes, could be explored to achieve full building coverage. However, it's important to note that this approach may lead to reduced speeds due to bandwidth division. These conclusions are drawn from the current survey and may require reassessment as the network evolves. Regular site surveys are recommended to monitor network performance and identify areas for optimization.
 
 \section{Roaming Architecture}
 
 This section will explain the meaning of roaming in wireless local area networks (WLANs), and introduce the basics of two types of roaming. It also describes the roaming model in the site survey.
 
 \subsection{Definition of Roaming}
-While joining a WLAN with multiple access points installed, the process by which a client device, also known as a wireless device, switches its connection from one access point to another access point as moving around the area is referred to as roaming \cite{article_example}.
 
-Roaming in WLAN is categorised into two types: internal roaming and external roaming [2] [3]. The study only focuses on internal roaming since it is implemented in the area where the site survey was conducted.
+With one network, several access points must often be installed to cover a building adequately. [...] When a user moves between one cell - a floor of a building, let's say - and another, the system must provide for hand-off, so that users can roam the floors without dropping the connection. The access point must automatically start handling the user's data traffic and redirect messages sent to the old access point. Almost all wireless LAN products have software that enables users to roam between access points, once the software notices a diminishing signal, it searches the domain for the strongest access-point signal and connects to that \cite{wickelgren1996}.
+
+Roaming in WLAN is categorised into two types: internal roaming (layer 2) and external roaming (layer 3) \cite{wiki_roaming}. The study only focuses on internal roaming since it is implemented in the area where the site survey was conducted.
 
 \subsection{Internal Roaming}
-Internal roaming or Layer 2 roaming refers to the process of connection is shifted between access points in the same network \cite{article_example}. Generally, the client device is not required to re-authenticate in internal roaming. The internal roaming process is shown in Fig. 7.
+
+Internal roaming or Layer 2 roaming  refers to roaming that occurs within the same subnet or distribution system. In this case, the device’s IP address remains unchanged, and the transition between APs is nearly seamless. Generally, the client device is not required to re-authenticate in internal roaming. The internal roaming process is shown in Fig. 7 and Fig. 8.
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.4\textwidth]{internal_roaming.png}
-    \caption{A picture displays the internal roaming (Layer 2 roaming) process
-[4].}
+    \includegraphics[width=0.46\textwidth]{fig7_internal_roaming.png}
+    \caption{A picture displays the wireless local area network (WLAN) for internal roaming \cite{study_ccnp}.}
 \end{figure}
 
-The client device, after participating in the network, will continuously listen for beacon frames or send probe requests to detect which access point has the strongest signal strength within its range and then decide to roam; the mechanism used to find access points is vendor-specific \cite{article_example}. Roaming can happen either when the signal strength of the current access point decreases or when detecting a higher signal strength level at another access point. The client device does not necessarily need to move into a designated or specific roaming spot; as long as it is within the overlapping range of access points, it can roam. In ideal cases, the roaming transition is seamless and no interruption of the data transmission between the client device and an application connected to the network occurs. However, there are also some situations where the client device disconnects from the current access point before re-associating with the new access point \cite{article_example} \cite{book_example}.
+Figure 7 illustrates two WLAN controllers (WLCs), where WLC-1 contains a database entry for Client-1. The client moves to AP-2, roaming from one WLC to another. This handover, managed by both WLCs, involves the client’s IP address. Prior to the roam, the client is connected to AP-1, receiving an IP address based on the subnet and VLAN settings configured on WLC-1’s WLAN. Since the WLAN Staff is assigned to VLAN 10, the client uses an IP address from the 192.168.100.0/24 subnet range.
 
-The process of internal roaming includes many steps other than just finding a new access point having a high RSSI to associate with. Roshan and Leary \cite{article_example} explain that there are some tasks for internal roaming as listed below and tasks with a mark (*) are not specified in the 802.11 standard so they are optional tasks.
+When the client connects to a new Access Point, it tries to retain its current IP address or requests a new one from the DHCP server. Fig. 8 shows the client moving to AP-2, where the WLAN Staff still operates on VLAN 10 with the same 192.168.100.0/24 subnet, the same as WLC-2.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.46\textwidth]{fig8_internal_roaming_after_roaming.png}
+    \caption{The internal roaming scenario showcasing the handover process between two WLCs \cite{study_ccnp}.}
+\end{figure}
+
+Although the client switched between different APs, it remained within the same subnet and VLAN, which qualifies as a Layer 2 intercontroller roam. This type of local-to-local roaming allows the client to keep its IP address, and the process is quick, typically taking less than 20 ms.
+
+The example above illustrates the Layer 2 roaming process of a client. Delving deeper into the technical aspects, there are more procedures involved than simply finding a new AP to communicate with \cite{wlan_fundamentals}. 
+
+(*) These tasks are not mandatory, as they are not explicitly defined in the 802.11 standard.
 
 \begin{itemize}
-    \item The current access point must determine that the client has roamed away from it to the new access point.
-    \item The current access point should temporarily store data any data meant for the roaming client. (*)
-    \item The new access point must inform the current access point that the client has successfully roamed, typically through a unicast or multicast packet sent from the current access point to the new access point, using the client's MAC address as the source. (*)
-    \item The current access point should forward the buffered data to the new access point. (*)
-    \item The access points need to update the MAC address tables on the infrastructure switches to prevent data loss for the roaming client. (*)
+    \item Client associates with the initial AP.
+    \item Client roams to a new AP.
+    \item Previous AP buffers data destined for the roaming client. (*) 
+    \item New AP indicates to the previous AP that the client has successfully roamed. This is typically done via a unicast or multicast packet from the old AP to the new AP with the source MAC address set to the MAC of the roaming client. (*)
+    \item After receiving confirmation, the previous AP should forward the buffered data to the new AP.
+    \item It is crucial for the previous AP to recognize that the client has moved away from its coverage area. Previous AP updates its MAC address table to remove the roaming client.
+    \item New AP needs to update MAC address tables on the infrastructure switches to add the roaming client.
 \end{itemize}
 
-
-To give an example of internal roaming, the UIT network in the site survey above uses internal roaming, as the SSIDs of the access points are similar—UIT Public, the IP address of the device was not changed when moving to another access point. As mentioned earlier, there are locations where the roaming process was seamless and others where connections were interrupted during roaming. Fig. 8 demonstrates how seamless roaming works in the site survey.
+To give an example of internal roaming, the GigaMall network in the site survey above employs internal roaming, as the SSID of the access points is the same—\#GigaMall - Swifi Free. The device's IP address remained unchanged when transitioning to another access point. As mentioned earlier, there were areas where the roaming process was seamless and others where connections were interrupted during the roaming process. Fig. 9 demonstrates how seamless roaming works in the site survey.
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.4\textwidth]{survey.png}
+    \includegraphics[width=0.48\textwidth]{fig9_seamless_roaming_work.png}
     \caption{An illustration of how seamless roaming works in the site survey.}
-\end{figure}
 
+\end{figure}
 
 \subsection{External Roaming}
 
-External roaming, or Layer 3 roaming, in contrast to internal roaming, refers to the process of changing the connection between access points in different networks. It happens when the client device moves to another WLAN or even another internet service provider \cite{article_example}. This type of roaming is typically applied in large networks. During the external roaming process, the device involved must change its IP address \cite{article_example}. Fig. 9 below depicts the external roaming process.
+External Roaming (also known as Layer 3 Roaming) is the process in which a device moves between different subnets when switching its connection from one AP to another. This type of roaming is more complex than internal roaming (Layer 2 Roaming), where the device only moves between APs within the same subnet without changing its IP address.
 
-\begin{figure}
+In a typical multi-floor buildings, application sessions are disrupted due to VLAN roaming. Mobile IP offers a standardized solution to address this issue by enabling seamless Layer 3 roaming across WLANs.This ensures uninterrupted connectivity for various applications \cite{wlan_fundamentals}. Fig. 10 and Fig. 11 below depicts the external roaming process.
+
+\begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.5\textwidth]{fig9.png}
-    \caption{An image represents the external roaming (Layer 3 roaming) process [4]}
-    \label{fig:enter-label}
+    \includegraphics[width=0.5\textwidth]{fig10_external_roaming.png}
+    \caption{A picture displays the WLAN environment for external roaming \cite{study_ccnp}.}
+\end{figure}
+
+WLAN interfaces on WLCs can be assigned to different VLANs and subnets. When a client switches between WLCs, it effectively roams between subnets. However, wireless clients typically remain unaware of subnet changes and only perceive AP roaming.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\textwidth]{fig11_external_roaming_after_roaming.png}
+    \caption{A WLAN external roaming scenario showcasing the handover process between two WLCs \cite{study_ccnp}.}
 \end{figure}
 
 \section{Conclusion}
-This study has explored weak points of wireless network in the area through a site survey and the roaming architecture implemented. Besides, the importance of conducting a site survey is highlighted also. The data collected during the site survey supplies a basis for suggesting improvements to enhance signal coverage and reduce interference, helping design an effective wireless network that meets the needs of students, faculty, and staffs.
 
-Additionally, the definition and classification of roaming introduced in the report provide insight into how to maintain seamless connectivity across different access points, improving overall network performance and user experience in the academic environment.
+This study has identified weaknesses in the wireless network within the area through a comprehensive site survey and an analysis of the existing roaming architecture. It also emphasizes the critical role of site surveys. The data collected during the survey serves as a foundation for proposing enhancements to improve signal coverage and minimize interference, enabling the design of an efficient wireless network design to meet the needs of entertainment, social networking and uploading short videos and images.
 
-\bibliographystyle{IEEEtran}
-\bibliography{references}
+Furthermore, the report provided a comprehensive overview of roaming, including its definition and classification. This knowledge is instrumental in understanding how to maintain seamless connectivity across various access points, thereby enhancing overall network performance and user experience within the academic environment.
+
+\begin{thebibliography}{9}
+
+\bibitem{wickelgren1996}
+I. J. Wickelgren, "Local-area networks go wireless," \textit{IEEE Spectrum}, vol. 33, pp. 38--40, 1996.
+
+\bibitem{wiki_roaming}
+Wikipedia contributors, "Wireless LAN - Wikipedia," 2024. [Online]. Available: \url{https://en.wikipedia.org/wiki/Wireless_LAN#Roaming}. [Accessed: 5-Oct-2024].
+
+\bibitem{study_ccnp}
+Study CCNP, ``WLAN Intercontroller Layer 2 and Layer 3 Roaming,'' 2024. [Online]. Available: \url{https://study-ccnp.com/wlan-intercontroller-layer-2-layer-3-roaming}. [Accessed: 5-Oct-2024].
+
+\bibitem{wlan_fundamentals}
+P. Roshan and J. Leary, \textit{802.11 Wireless LAN Fundamentals}. Cisco Press, 2003.
+
+\end{thebibliography}
 
 \end{document}
