@@ -128,7 +128,7 @@ Internal roaming or Layer 2 roaming  refers to roaming that occurs within the sa
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.46\textwidth]{fig7_internal_roaming.png}
-    \caption{A picture displays the concept of wireless local area network (WLAN) roaming \cite{study_ccnp}.}
+    \caption{A picture displays the wireless local area network (WLAN) for internal roaming \cite{study_ccnp}.}
 \end{figure}
 
 Figure 7 illustrates two WLAN controllers (WLCs), where WLC-1 contains a database entry for Client-1. The client moves to AP-2, roaming from one WLC to another. This handover, managed by both WLCs, involves the client’s IP address. Prior to the roam, the client is connected to AP-1, receiving an IP address based on the subnet and VLAN settings configured on WLC-1’s WLAN. Since the WLAN Staff is assigned to VLAN 10, the client uses an IP address from the 192.168.100.0/24 subnet range.
@@ -138,7 +138,7 @@ When the client connects to a new Access Point, it tries to retain its current I
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.46\textwidth]{fig8_internal_roaming_after_roaming.png}
-    \caption{A WLAN roaming scenario showcasing the handover process between two WLCs \cite{study_ccnp}.}
+    \caption{The internal roaming scenario showcasing the handover process between two WLCs \cite{study_ccnp}.}
 \end{figure}
 
 Although the client switched between different APs, it remained within the same subnet and VLAN, which qualifies as a Layer 2 intercontroller roam. This type of local-to-local roaming allows the client to keep its IP address, and the process is quick, typically taking less than 20 ms.
@@ -168,20 +168,29 @@ To give an example of internal roaming, the GigaMall network in the site survey 
 
 \subsection{External Roaming}
 
-External roaming, or Layer 3 roaming, in contrast to internal roaming, refers to the process of changing the connection between access points in different networks. It happens when the client device moves to another WLAN or even another internet service provider \cite{article_example}. This type of roaming is typically applied in large networks. During the external roaming process, the device involved must change its IP address \cite{article_example}. Fig. 9 below depicts the external roaming process.
+External Roaming (also known as Layer 3 Roaming) is the process in which a device moves between different subnets when switching its connection from one AP to another. This type of roaming is more complex than internal roaming (Layer 2 Roaming), where the device only moves between APs within the same subnet without changing its IP address.
 
-\begin{figure}
+In a typical multi-floor buildings, application sessions are disrupted due to VLAN roaming. Mobile IP offers a standardized solution to address this issue by enabling seamless Layer 3 roaming across WLANs.This ensures uninterrupted connectivity for various applications \cite{wlan_fundamentals}. Fig. 10 and Fig. 11 below depicts the external roaming process.
+
+\begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.5\textwidth]{fig9.png}
-    \caption{An image represents the external roaming (Layer 3 roaming) process [4]}
-    \label{fig:enter-label}
+    \includegraphics[width=0.5\textwidth]{fig10_external_roaming.png}
+    \caption{A picture displays the WLAN environment for external roaming \cite{study_ccnp}.}
+\end{figure}
+
+WLAN interfaces on WLCs can be assigned to different VLANs and subnets. When a client switches between WLCs, it effectively roams between subnets. However, wireless clients typically remain unaware of subnet changes and only perceive AP roaming.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\textwidth]{fig11_external_roaming_after_roaming.png}
+    \caption{A WLAN external roaming scenario showcasing the handover process between two WLCs \cite{study_ccnp}.}
 \end{figure}
 
 \section{Conclusion}
-This study has explored weak points of wireless network in the area through a site survey and the roaming architecture implemented. Besides, the importance of conducting a site survey is highlighted also. The data collected during the site survey supplies a basis for suggesting improvements to enhance signal coverage and reduce interference, helping design an effective wireless network that meets the needs of students, faculty, and staffs.
 
-Additionally, the definition and classification of roaming introduced in the report provide insight into how to maintain seamless connectivity across different access points, improving overall network performance and user experience in the academic environment.
+This study has identified weaknesses in the wireless network within the area through a comprehensive site survey and an analysis of the existing roaming architecture. It also emphasizes the critical role of site surveys. The data collected during the survey serves as a foundation for proposing enhancements to improve signal coverage and minimize interference, enabling the design of an efficient wireless network design to meet the needs of entertainment, social networking and uploading short videos and images.
 
+Furthermore, the report provided a comprehensive overview of roaming, including its definition and classification. This knowledge is instrumental in understanding how to maintain seamless connectivity across various access points, thereby enhancing overall network performance and user experience within the academic environment.
 
 \begin{thebibliography}{9}
 
