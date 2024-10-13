@@ -21,7 +21,7 @@
 \maketitle
 
 \begin{abstract}
-This report investigates Wi-Fi coverage and signal strength at a specific area in Gigamall Shopping Center, Thu Duc, and explains the basic architecture of the network's roaming currently in use.
+This report investigates Wi-Fi coverage and signal strength at a specific area in GigaMall Shopping Center, Thu Duc, and explains the basic architecture of the network's roaming currently in use.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -29,18 +29,22 @@ wireless site survey, roaming architecture, coverage analysis
 \end{IEEEkeywords}
 
 \section{Introduction}
-Wireless site surveys are useful for ensuring good performance and coverage of Wi-Fi networks in equipped environments, especially in locations like shopping centers, as they require a stable Wi-Fi connection for a large number of users. Surveys should be conducted in small areas for more accuracy. This report aims to present findings and assess Wi-Fi signal strength, and coverage areas on the first floor of Gigamall Shopping Center, Thu Duc. These findings and assessments will serve as a basis for recommendations to enhance the network. Additionally, the report will explain the roaming architecture implemented to optimise connectivity across different areas within the network and improve overall user experience.
+
+Wireless site surveys are useful for ensuring good performance and coverage of Wi-Fi networks in equipped environments, especially in locations like shopping centers, as they require a stable Wi-Fi connection for a large number of users. Surveys should be conducted in small areas for more accuracy. This report aims to present findings and assess Wi-Fi signal strength, and coverage areas on the first floor of GigaMall Shopping Center, Thu Duc. These findings and assessments will serve as a basis for recommendations to enhance the network. Additionally, the report will explain the roaming architecture implemented to optimise connectivity across different areas within the network and improve overall user experience.
+
 \section{Wireless Site Surveys}
 
 \subsection{Site Description}
-This area is the Gigamall Shopping Center in Thu Duc, frequently visited by local residents due to its many shopping and entertainment zones, as well as large supermarket systems. The surveyed floor is the first floor, covering an area of approximately 12,000 square meters. The layout consists of shops, stairs, and corridors. The walls are made of plastic partitions with a steel frame, and the doors are made of glass.
+
+This area is the GigaMall Shopping Center in Thu Duc, frequently visited by local residents due to its many shopping and entertainment zones, as well as large supermarket systems. The surveyed floor is the first floor, covering an area of approximately 12,000 square meters. The layout consists of shops, stairs, and corridors. The walls are made of plastic partitions with a steel frame, and the doors are made of glass.
 
 The survey was conducted on the weekend during peak hours. The highest density was recorded at Highland Coffee, where a large number of people gathered to relax.
 
 \subsection{Methodology}
-To ensure a thorough assessment of network conditions, a strategic selection of survey points was made. These points were carefully chosen to provide representative coverage across the entire mall, encompassing various areas such as common spaces, retail outlets, and food courts. A floor map was generated using data from the official Gigamall website. Network access points were identified and marked on the map. The next steps involved identifying the points to be surveyed; these selected points had to be specific locations to ensure that the survey covered nearly all aspects of the floor. To facilitate data collection, specialized network measurement tools were configured on mobile and laptop devices. 
 
-Specifically, \textit{speedtest-cli} utility is used to quantify internet performance metrics, including upload and download speeds as well as network latency. Due to the large number of points to be surveyed, a Python script was utilized to automate the process and save the records into a text file whenever one of these points was reached. Moreover, \textit{lswifi} commandline tool was employed to list all the recognizable Wi-Fi networks within range, capturing essential details such as Service Set Identifiers (SSIDs), Received Signal Strength Indicators (RSSIs), channels, frequencies, security protocols, and 802.11 standards.
+To ensure a thorough assessment of network conditions, a strategic selection of survey points was made. These points were carefully chosen to provide representative coverage across the entire mall, encompassing various areas such as common spaces, retail outlets, and food courts. A floor map was generated using data from the official GigaMall website. Network access points were identified and marked on the map. The next steps involved identifying the points to be surveyed; these selected points had to be specific locations to ensure that the survey covered nearly all aspects of the floor. To facilitate data collection, specialized network measurement tools were configured on mobile and laptop devices. 
+
+Specifically, \textit{speedtest-cli} utility is used to quantify internet performance metrics, including upload and download speeds as well as network latency. Due to the large number of points to be surveyed, a Python script was utilized to automate the process and save the records into a text file whenever one of these points was reached. Moreover, \textit{lswifi} commandline tool was employed to list all the recognizable Wi-Fi networks within range, capturing essential details such as Service Set Identifiers (SSIDs), Received Signal Strength Indicators (RSSIs), channels, frequencies, security protocols, and 802.11 standards. Additionally, the Wifi Heatmap application downloaded from the Google Play Store is used to survey signal strength. By walking around, signal strength was measured and the map was colored accordingly to generate a heatmap.
 
 Given the substantial number of survey points, a Python script was developed to automate the data collection process. This script enabled the efficient recording of network measurements at each designated location, storing the results in a csv file for subsequent analysis.
 
@@ -53,10 +57,10 @@ Fig. 1 below is the heatmap illustrating the Wi-Fi signal strength received by t
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.48\textwidth]{fig1_heatmap.png}
-    \caption{Heatmap of Wi-Fi signal coverage on the first floor of Gigamall Shopping Center.}
+    \caption{Heatmap of Wi-Fi signal coverage on the first floor of GigaMall Shopping Center.}
 \end{figure}
 
-The spacious central area on the map is a common space within the shopping mall, equipped with approximately 3 public Wi-Fi access points to meet the high demand of visitors for browsing, online shopping, and entertainment. As can be seen from the map, the signal in this area is always measured above -60 dBm, which was only sufficient at the time the survey was conducted. Within a 10-meter radius of each access point, a level below -60 dBm can be achieved. However, the stability is not high due to the large number of connections accessing simultaneously. Improving the signal strength would be beneficial to ensure more reliable and faster connections, especially during peak usage periods.
+The spacious central area on the map is a common space within the shopping mall, equipped with approximately 4 public Wi-Fi access points to meet the high demand of visitors for browsing, online shopping, and entertainment. As can be seen from the map, the signal in this area is always measured above -60 dBm, which was only sufficient at the time the survey was conducted. Within a 10-meter radius of each access point, a level below -60 dBm can be achieved. However, the stability is not high due to the large number of connections accessing simultaneously. Improving the signal strength would be beneficial to ensure more reliable and faster connections, especially during peak usage periods.
 
 The surrounding areas are shop houses separated from the common space by walls, glass, and large plastic panels. Despite being within the shopping center, these shop houses suffer from poor Wi-Fi signal strength. Consequently, most shop houses have deployed their own Wi-Fi networks, leading to a dense Wi-Fi environment. This high density of Wi-Fi networks can result in interference, particularly when multiple networks operate on the same channel or frequency band (2.4GHz or 5GHz). As illustrated in Fig 2, signal strength typically decreases with distance from the access point, but factors such as physical obstructions, high density of Wi-Fi networks and a large number of concurrent connections can cause deviations from this general trend, resulting in non-monotonic chart values.
 
@@ -130,7 +134,7 @@ Internal roaming or Layer 2 roaming  refers to roaming that occurs within the sa
     \caption{A picture displays the wireless local area network (WLAN) for internal roaming \cite{study_ccnp}.}
 \end{figure}
 
-Figure 7 illustrates two WLAN controllers (WLCs), where WLC-1 contains a database entry for Client-1. The client moves to AP-2, roaming from one WLC to another. This handover, managed by both WLCs, involves the client’s IP address. Prior to the roam, the client is connected to AP-1, receiving an IP address based on the subnet and VLAN settings configured on WLC-1’s WLAN. Since the WLAN Staff is assigned to VLAN 10, the client uses an IP address from the 192.168.100.0/24 subnet range.
+Fig. 7 illustrates two WLAN controllers (WLCs), where WLC-1 contains a database entry for Client-1. The client moves to AP-2, roaming from one WLC to another. This handover, managed by both WLCs, involves the client’s IP address. Prior to the roam, the client is connected to AP-1, receiving an IP address based on the subnet and VLAN settings configured on WLC-1’s WLAN. Since the WLAN Staff is assigned to VLAN 10, the client uses an IP address from the 192.168.100.0/24 subnet range.
 
 When the client connects to a new Access Point, it tries to retain its current IP address or requests a new one from the DHCP server. Fig. 8 shows the client moving to AP-2, where the WLAN Staff still operates on VLAN 10 with the same 192.168.100.0/24 subnet, the same as WLC-2.
 
