@@ -60,15 +60,14 @@ Fig. 1 below is the heatmap illustrating the Wi-Fi signal strength received by t
     \caption{Heatmap of Wi-Fi signal coverage on the first floor of GigaMall Shopping Center.}
 \end{figure}
 
-The spacious central area on the map is a common space within the shopping mall, equipped with approximately 4 public Wi-Fi access points to meet the high demand of visitors for browsing, online shopping, and entertainment. As can be seen from the map, the signal in this area is always measured above -60 dBm, which was only sufficient at the time the survey was conducted. Within a 10-meter radius of each access point, a level below -60 dBm can be achieved. However, the stability is not high due to the large number of connections accessing simultaneously. Improving the signal strength would be beneficial to ensure more reliable and faster connections, especially during peak usage periods.
+The spacious central area on the map is a common space within the shopping mall, equipped with approximately 4 public Wi-Fi access points to meet the high demand of visitors for browsing, online shopping, and entertainment. As can be seen from the map, the signal in this area is always measured below -60 dBm, which was only sufficient at the time the survey was conducted. Within a 10-meter radius of each access point, a level above -60 dBm can be achieved. However, the stability is not high due to the large number of connections accessing simultaneously. Improving the signal strength would be beneficial to ensure more reliable and faster connections, especially during peak usage periods.
 
 The surrounding areas are shop houses separated from the common space by walls, glass, and large plastic panels. Despite being within the shopping center, these shop houses suffer from poor Wi-Fi signal strength. Consequently, most shop houses have deployed their own Wi-Fi networks, leading to a dense Wi-Fi environment. This high density of Wi-Fi networks can result in interference, particularly when multiple networks operate on the same channel or frequency band (2.4GHz or 5GHz). As illustrated in Fig 2, signal strength typically decreases with distance from the access point, but factors such as physical obstructions, high density of Wi-Fi networks and a large number of concurrent connections can cause deviations from this general trend, resulting in non-monotonic chart values.
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.48\textwidth]{fig2_rssi.png}
-    \caption{A line chart shows the relationship between distance from access
-point and RSSI.}
+    \caption{A line chart shows the relationship between distance from access point and RSSI.}
 \end{figure}
 
 Fig. 3 compares the signal strength under line-of-sight (LoS) and non-line of sight (Non-LoS) conditions. Signal strength measurements were collected over a 120-second interval while connected to the same access point at a fixed distance. As shown, the LoS condition consistently exhibits stronger signal strength and less attenuation compared to the Non-LoS condition.
@@ -85,7 +84,7 @@ Additionally, data on upload and download speeds, as well as latency at each sur
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.5\textwidth]{fig4_speed_test.png}
-    \caption{Relationship between distance from access point and RSSI.}
+    \caption{Relationship between RSSI and Network Performance.}
 \end{figure}
 
 The green line, representing latency, demonstrates an inverse correlation with RSSI. As signal strength (RSSI) diminishes, latency increases, and conversely. For instance, at low RSSI values (approximately -73 dBm), latency is elevated (above 70 ms), indicating a direct relationship between weak signal strength and increased data transmission delays. High latency potentially affects real-time applications like online gaming or video streaming.
